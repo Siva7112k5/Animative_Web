@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="contact-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Let's <span class="gradient-text">Work Together</span></h2>
+            <p>Ready to start your next project? Reach out to us!</p>
+        </div>
+        
+        <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+            <div class="contact-info" data-aos="fade-right">
+                <h3>Get in Touch</h3>
+                <p style="color: var(--gray); margin-bottom: 2rem;">We'd love to hear about your project. Let's create something amazing together.</p>
+                
+                <div style="margin-bottom: 2rem;">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <i class="fas fa-envelope" style="font-size: 1.5rem; color: var(--primary);"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <a href="mailto:hello@nexvion.com" style="color: var(--gray); text-decoration: none;">hello@nexvion.com</a>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <i class="fas fa-phone" style="font-size: 1.5rem; color: var(--primary);"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <a href="tel:+1234567890" style="color: var(--gray); text-decoration: none;">+1 (234) 567-890</a>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <i class="fas fa-map-marker-alt" style="font-size: 1.5rem; color: var(--primary);"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p style="color: var(--gray);">San Francisco, CA</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Social Media Section -->
+                <div class="social-connect" style="margin-top: 2rem;">
+                    <h4 style="margin-bottom: 1rem;">Connect With Us</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="https://whatsapp.com" target="_blank" class="social-icon-btn whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                        <a href="https://t.me/nexvion" target="_blank" class="social-icon-btn telegram">
+                            <i class="fab fa-telegram"></i> Telegram
+                        </a>
+                        <a href="https://linkedin.com/company/nexvion" target="_blank" class="social-icon-btn linkedin">
+                            <i class="fab fa-linkedin-in"></i> LinkedIn
+                        </a>
+                        <a href="https://instagram.com/nexvion" target="_blank" class="social-icon-btn instagram">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                        <a href="https://twitter.com/nexvion" target="_blank" class="social-icon-btn twitter">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </a>
+                        <a href="https://facebook.com/nexvion" target="_blank" class="social-icon-btn facebook">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                        <a href="https://github.com/nexvion" target="_blank" class="social-icon-btn github">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="https://youtube.com/@nexvion" target="_blank" class="social-icon-btn youtube">
+                            <i class="fab fa-youtube"></i> YouTube
+                        </a>
+                        <a href="https://discord.gg/nexvion" target="_blank" class="social-icon-btn discord">
+                            <i class="fab fa-discord"></i> Discord
+                        </a>
+                        <a href="https://reddit.com/r/nexvion" target="_blank" class="social-icon-btn reddit">
+                            <i class="fab fa-reddit-alien"></i> Reddit
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form" data-aos="fade-left">
+                <form id="contact-form" style="background: rgba(255, 255, 255, 0.05); padding: 2rem; border-radius: 20px;">
+                    <div style="margin-bottom: 1rem;">
+                        <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: white;">
+                    </div>
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <input type="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: white;">
+                    </div>
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <textarea name="message" rows="5" placeholder="Tell us about your project..." required style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: white;"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.social-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.social-icon-btn:hover {
+    transform: translateY(-3px);
+}
+
+.social-icon-btn.whatsapp { background: #25D366; }
+.social-icon-btn.telegram { background: #0088cc; }
+.social-icon-btn.linkedin { background: #0077b5; }
+.social-icon-btn.instagram { background: #E4405F; }
+.social-icon-btn.twitter { background: #1DA1F2; }
+.social-icon-btn.facebook { background: #1877f2; }
+.social-icon-btn.github { background: #333; }
+.social-icon-btn.youtube { background: #FF0000; }
+.social-icon-btn.discord { background: #5865F2; }
+.social-icon-btn.reddit { background: #FF4500; }
+</style>
+
+<script>
+document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+    
+    try {
+        const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        const result = await response.json();
+        alert(result.message);
+        if (result.status === 'success') e.target.reset();
+    } catch (error) {
+        alert('Error sending message. Please try again.');
+    }
+});
+</script>
+{% endblock %}

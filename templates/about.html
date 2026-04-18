@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="team-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Meet the <span class="gradient-text">Team</span></h2>
+            <p>Three passionate developers building the future of web</p>
+        </div>
+        
+        <div class="team-grid">
+            <!-- Siva -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="team-icon">🚀</div>
+                <h3>Siva</h3>
+                <p class="team-role">Full Stack Architect</p>
+                <p class="team-bio">10+ years of experience building scalable web applications. Expert in React, Python, and Cloud Architecture.</p>
+                <div class="team-skills">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">Docker</span>
+                </div>
+                <div class="team-social" style="margin-top: 1rem; display: flex; gap: 0.75rem; justify-content: center;">
+                    <a href="https://github.com/siva" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/siva" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://twitter.com/siva" target="_blank" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com/siva" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <!-- Philip -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="team-icon">⚡</div>
+                <h3>Philip</h3>
+                <p class="team-role">Backend Engineer</p>
+                <p class="team-bio">Database wizard and API specialist. Creates robust, secure, and lightning-fast backend systems.</p>
+                <div class="team-skills">
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">Redis</span>
+                    <span class="skill-tag">MongoDB</span>
+                </div>
+                <div class="team-social" style="margin-top: 1rem; display: flex; gap: 0.75rem; justify-content: center;">
+                    <a href="https://github.com/philip" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/philip" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://twitter.com/philip" target="_blank" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com/philip" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <!-- David -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="team-icon">🎨</div>
+                <h3>David</h3>
+                <p class="team-role">Machine Learning and AI</p>
+                <p class="team-bio">Creative mind behind beautiful interfaces. Turns complex ideas into intuitive user experiences.</p>
+                <div class="team-skills">
+                    <span class="skill-tag">Figma</span>
+                    <span class="skill-tag">Tailwind</span>
+                    <span class="skill-tag">Framer</span>
+                    <span class="skill-tag">Adobe XD</span>
+                </div>
+                <div class="team-social" style="margin-top: 1rem; display: flex; gap: 0.75rem; justify-content: center;">
+                    <a href="https://github.com/david" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/david" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://dribbble.com/david" target="_blank" class="social-link"><i class="fab fa-dribbble"></i></a>
+                    <a href="https://behance.net/david" target="_blank" class="social-link"><i class="fab fa-behance"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mission-section" data-aos="fade-up" style="margin-top: 4rem; text-align: center;">
+            <h3 style="font-size: 2rem; margin-bottom: 1rem;">Our <span class="gradient-text">Mission</span></h3>
+            <p style="max-width: 800px; margin: 0 auto; color: var(--gray); font-size: 1.125rem; line-height: 1.8;">
+                To provide enterprise-level code quality at startup-friendly speeds. We believe in 
+                building long-term partnerships with our clients and delivering exceptional value 
+                through innovative solutions.
+            </p>
+        </div>
+    </div>
+</section>
+
+<style>
+.social-link {
+    width: 35px;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background: var(--gradient);
+    transform: translateY(-3px);
+}
+</style>
+{% endblock %}

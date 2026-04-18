@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexvion - {% block title %}Premium Web Development Agency{% endblock %}</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor"></div>
+<div class="cursor-dot"></div>
+
+<!-- Loader -->
+<div class="loader">
+    <div class="loader-circle"></div>
+</div>
+
+<!-- Animated Background Elements -->
+<div class="gradient-orb orb-1"></div>
+<div class="gradient-orb orb-2"></div>
+<div class="gradient-orb orb-3"></div>
+<div class="grid-lines"></div>
+<div class="particles" id="particles"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="/" class="logo">
+            <span class="logo-icon">⚡</span>
+            <span class="logo-text">NEXVION</span>
+        </a>
+        
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+        
+        <button class="nav-cta" onclick="location.href='/contact'">Start a Project 🚀</button>
+        
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <div class="footer-brand">
+                    <span class="logo-icon">⚡</span>
+                    <span class="logo-text">NEXVION</span>
+                </div>
+                <p class="footer-description">
+                    Building digital products that scale. Three developers, one mission.
+                </p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/portfolio">Portfolio</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li>Web Applications</li>
+                    <li>E-Commerce</li>
+                    <li>Mobile Apps</li>
+                    <li>Cloud Services</li>
+                    <li>UI/UX Design</li>
+                    <li>24/7 Support</li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <ul class="contact-info">
+                    <li><i class="fas fa-envelope"></i> hello@nexvion.com</li>
+                    <li><i class="fas fa-phone"></i> +1 (234) 567-890</li>
+                    <li><i class="fas fa-map-marker-alt"></i> San Francisco, CA</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Nexvion. All rights reserved.</p>
+            <p>Made with <i class="fas fa-heart"></i> by Siva, Philip & David</p>
+        </div>
+    </div>
+</footer>
+<!-- Add these in the body, before any content -->
+<div class="cursor"></div>
+<div class="cursor-dot"></div>
+
+<div class="particles"></div>
+<div class="gradient-orb orb-1"></div>
+<div class="gradient-orb orb-2"></div>
+<div class="gradient-orb orb-3"></div>
+<div class="grid-lines"></div>
+<!-- Floating Social Media -->
+<div class="floating-social">
+    <a href="#" class="social-float whatsapp"><i class="fab fa-whatsapp"></i></a>
+    <a href="#" class="social-float telegram"><i class="fab fa-telegram"></i></a>
+    <a href="#" class="social-float linkedin"><i class="fab fa-linkedin-in"></i></a>
+    <a href="#" class="social-float twitter"><i class="fab fa-twitter"></i></a>
+    <a href="#" class="social-float github"><i class="fab fa-github"></i></a>
+</div>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

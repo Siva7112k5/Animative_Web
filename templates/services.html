@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="services-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Our <span class="gradient-text">Services</span></h2>
+            <p>Comprehensive solutions for your business needs</p>
+        </div>
+        
+        <div class="services-grid">
+            {% for service in services %}
+            <div class="service-card" data-aos="fade-up" data-aos-delay="{{ loop.index * 100 }}">
+                <div class="service-icon">{{ service.icon }}</div>
+                <h3>{{ service.title }}</h3>
+                <p>{{ service.description }}</p>
+                <ul class="service-features">
+                    {% for feature in service.features %}
+                    <li><i class="fas fa-check"></i> {{ feature }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Process Section -->
+        <div class="process-section" style="margin-top: 5rem;">
+            <h3 style="text-align: center; font-size: 2rem; margin-bottom: 3rem;">Our <span class="gradient-text">Process</span></h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                <div style="text-align: center;" data-aos="fade-up">
+                    <div style="width: 80px; height: 80px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 2rem;">1</div>
+                    <h4>Discovery</h4>
+                    <p style="color: var(--gray);">We understand your goals and requirements</p>
+                </div>
+                <div style="text-align: center;" data-aos="fade-up" data-aos-delay="100">
+                    <div style="width: 80px; height: 80px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 2rem;">2</div>
+                    <h4>Design</h4>
+                    <p style="color: var(--gray);">Create beautiful, intuitive interfaces</p>
+                </div>
+                <div style="text-align: center;" data-aos="fade-up" data-aos-delay="200">
+                    <div style="width: 80px; height: 80px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 2rem;">3</div>
+                    <h4>Development</h4>
+                    <p style="color: var(--gray);">Build with cutting-edge technology</p>
+                </div>
+                <div style="text-align: center;" data-aos="fade-up" data-aos-delay="300">
+                    <div style="width: 80px; height: 80px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 2rem;">4</div>
+                    <h4>Launch & Support</h4>
+                    <p style="color: var(--gray);">Deploy and provide ongoing maintenance</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

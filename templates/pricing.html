@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="pricing-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Simple, Transparent <span class="gradient-text">Pricing</span></h2>
+            <p>Choose the perfect plan for your project</p>
+        </div>
+        
+        <div class="pricing-grid">
+            {% for plan in pricing %}
+            <div class="pricing-card {% if plan.popular %}popular{% endif %}" data-aos="fade-up" data-aos-delay="{{ loop.index * 100 }}">
+                {% if plan.popular %}
+                <div class="popular-badge">Most Popular</div>
+                {% endif %}
+                <h3>{{ plan.name }}</h3>
+                <div class="price">
+                    <span class="amount">{{ plan.price }}</span>
+                    <span class="period">{{ plan.period }}</span>
+                </div>
+                <p class="plan-description">{{ plan.description }}</p>
+                <ul class="plan-features">
+                    {% for feature in plan.features %}
+                    <li><i class="fas fa-check"></i> {{ feature }}</li>
+                    {% endfor %}
+                </ul>
+                <button class="btn-primary" onclick="location.href='/contact'">
+                    Get Started
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- FAQ Section -->
+        <div class="faq-section" style="margin-top: 5rem;">
+            <h3 style="text-align: center; font-size: 2rem; margin-bottom: 3rem;">Frequently Asked <span class="gradient-text">Questions</span></h3>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="faq-item" style="margin-bottom: 1rem;" data-aos="fade-up">
+                    <div class="faq-question" style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 10px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <h4>What's the typical timeline for a project?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer" style="display: none; padding: 1rem; color: var(--gray); line-height: 1.6;">
+                        Timeline varies based on project complexity. A typical website takes 4-6 weeks, while complex web applications may take 8-12 weeks. We'll provide a detailed timeline during consultation.
+                    </div>
+                </div>
+                
+                <div class="faq-item" style="margin-bottom: 1rem;" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-question" style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 10px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <h4>Do you offer payment plans?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer" style="display: none; padding: 1rem; color: var(--gray); line-height: 1.6;">
+                        Yes, we offer flexible payment plans. Typically we require 50% upfront, 25% at milestone completion, and 25% upon final delivery. Custom arrangements can be discussed.
+                    </div>
+                </div>
+                
+                <div class="faq-item" style="margin-bottom: 1rem;" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faq-question" style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 10px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <h4>Do you provide ongoing maintenance?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer" style="display: none; padding: 1rem; color: var(--gray); line-height: 1.6;">
+                        Absolutely! We offer maintenance packages starting at $299/month, which includes security updates, backups, content updates, and 24/7 monitoring.
+                    </div>
+                </div>
+                
+                <div class="faq-item" style="margin-bottom: 1rem;" data-aos="fade-up" data-aos-delay="300">
+                    <div class="faq-question" style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 10px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <h4>What technologies do you use?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer" style="display: none; padding: 1rem; color: var(--gray); line-height: 1.6;">
+                        We use modern technologies including React, Node.js, Python, Flask, Django, MongoDB, PostgreSQL, AWS, and more. We choose the best tech stack for your specific needs.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+// FAQ Accordion
+document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const icon = question.querySelector('.faq-icon');
+        
+        if (answer.style.display === 'none' || !answer.style.display) {
+            answer.style.display = 'block';
+            icon.textContent = '−';
+        } else {
+            answer.style.display = 'none';
+            icon.textContent = '+';
+        }
+    });
+});
+</script>
+{% endblock %}
