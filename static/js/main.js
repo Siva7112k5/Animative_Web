@@ -119,12 +119,14 @@ const navLinks = document.querySelector('.nav-links');
 if(hamburger) {
     hamburger.addEventListener('click', () => {
         navLinks?.classList.toggle('active');
+        hamburger.classList.toggle('active');
     });
 }
 
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
         navLinks?.classList.remove('active');
+        hamburger?.classList.remove('active');
     });
 });
 
@@ -139,6 +141,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 block: 'start' 
             });
             navLinks?.classList.remove('active');
+            hamburger?.classList.remove('active');
         }
     });
 });
