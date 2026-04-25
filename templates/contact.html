@@ -1,150 +1,305 @@
 {% extends "base.html" %}
 
+{% block title %}Contact — Nexvion{% endblock %}
+
+{% block extra_css %}
+
+{% endblock %}
+
 {% block content %}
-<section class="contact-section" style="padding-top: 120px;">
-    <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <h2>Let's <span class="gradient-text">Work Together</span></h2>
-            <p>Ready to start your next project? Reach out to us!</p>
-        </div>
-        
-        <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
-            <div class="contact-info" data-aos="fade-right">
-                <h3>Get in Touch</h3>
-                <p style="color: var(--gray); margin-bottom: 2rem;">We'd love to hear about your project. Let's create something amazing together.</p>
-                
-                <div style="margin-bottom: 2rem;">
-                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
-                        <i class="fas fa-envelope" style="font-size: 1.5rem; color: var(--primary);"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <a href="mailto:hello@nexvion.com" style="color: var(--gray); text-decoration: none;">hello@nexvion.com</a>
-                        </div>
-                    </div>
-                    
-                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
-                        <i class="fas fa-phone" style="font-size: 1.5rem; color: var(--primary);"></i>
-                        <div>
-                            <h4>Phone</h4>
-                            <a href="tel:+1234567890" style="color: var(--gray); text-decoration: none;">+19 9746573849</a>
-                        </div>
-                    </div>
-                    
-                    <div style="display: flex; align-items: center; gap: 1rem;">
-                        <i class="fas fa-map-marker-alt" style="font-size: 1.5rem; color: var(--primary);"></i>
-                        <div>
-                            <h4>Location</h4>
-                            <p style="color: var(--gray);">Kanyakumari, TN</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Social Media Section -->
-                <div class="social-connect" style="margin-top: 2rem;">
-                    <h4 style="margin-bottom: 1rem;">Connect With Us</h4>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <a href="https://whatsapp.com" target="_blank" class="social-icon-btn whatsapp">
-                            <i class="fab fa-whatsapp"></i> WhatsApp
-                        </a>
-                        <a href="https://t.me/nexvion" target="_blank" class="social-icon-btn telegram">
-                            <i class="fab fa-telegram"></i> Telegram
-                        </a>
-                        <a href="https://linkedin.com/company/nexvion" target="_blank" class="social-icon-btn linkedin">
-                            <i class="fab fa-linkedin-in"></i> LinkedIn
-                        </a>
-                        <a href="https://instagram.com/nexvion" target="_blank" class="social-icon-btn instagram">
-                            <i class="fab fa-instagram"></i> Instagram
-                        </a>
-                        <a href="https://twitter.com/nexvion" target="_blank" class="social-icon-btn twitter">
-                            <i class="fab fa-twitter"></i> Twitter
-                        </a>
-                        <a href="https://facebook.com/nexvion" target="_blank" class="social-icon-btn facebook">
-                            <i class="fab fa-facebook-f"></i> Facebook
-                        </a>
-                        <a href="https://github.com/nexvion" target="_blank" class="social-icon-btn github">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                        <a href="https://youtube.com/@nexvion" target="_blank" class="social-icon-btn youtube">
-                            <i class="fab fa-youtube"></i> YouTube
-                        </a>
-                        <a href="https://discord.gg/nexvion" target="_blank" class="social-icon-btn discord">
-                            <i class="fab fa-discord"></i> Discord
-                        </a>
-                        <a href="https://reddit.com/r/nexvion" target="_blank" class="social-icon-btn reddit">
-                            <i class="fab fa-reddit-alien"></i> Reddit
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="contact-form" data-aos="fade-left">
-                <form id="contact-form" style="background: rgba(255, 255, 255, 0.05); padding: 2rem; border-radius: 20px;">
-                    <div style="margin-bottom: 1rem;">
-                        <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: white;">
-                    </div>
-                    
-                    <div style="margin-bottom: 1rem;">
-                        <input type="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: white;">
-                    </div>
-                    
-                    <div style="margin-bottom: 1rem;">
-                        <textarea name="message" rows="5" placeholder="Tell us about your project..." required style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: white;"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </div>
+<!-- Hero Section -->
+<section class="contact-hero">
+  <div class="contact-hero-content">
+    <span class="hero-badge" style="display: inline-block; margin-bottom: 20px;">✨ Let's Connect</span>
+    <h1>Get In <span style="color: var(--primary);">Touch</span></h1>
+    <p>Have a project in mind? We'd love to hear about it. Let's build something great together.</p>
+  </div>
 </section>
 
-<style>
-.social-icon-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    border-radius: 50px;
-    text-decoration: none;
-    color: white;
-    font-size: 14px;
-    transition: all 0.3s ease;
-}
+<!-- Contact Section -->
+<section class="contact-section">
+  <div class="contact-container">
+    <!-- Left Column - Contact Info -->
+    <div class="contact-info-side">
+      <!-- Availability -->
+      <div class="availability-card fade-up">
+        <div class="status-dot"></div>
+        <div class="availability-text">
+          Currently <strong>available</strong> for new projects — typically responds within <strong>4 hours</strong>
+        </div>
+      </div>
 
-.social-icon-btn:hover {
-    transform: translateY(-3px);
-}
+      <!-- Email -->
+      <div class="info-card fade-up delay-1">
+        <div class="info-icon">📧</div>
+        <div class="info-content">
+          <div class="info-label">Email</div>
+          <div class="info-value"><a href="mailto:hello@nexvion.com">hello@nexvion.com</a></div>
+        </div>
+      </div>
 
-.social-icon-btn.whatsapp { background: #25D366; }
-.social-icon-btn.telegram { background: #0088cc; }
-.social-icon-btn.linkedin { background: #0077b5; }
-.social-icon-btn.instagram { background: #E4405F; }
-.social-icon-btn.twitter { background: #1DA1F2; }
-.social-icon-btn.facebook { background: #1877f2; }
-.social-icon-btn.github { background: #333; }
-.social-icon-btn.youtube { background: #FF0000; }
-.social-icon-btn.discord { background: #5865F2; }
-.social-icon-btn.reddit { background: #FF4500; }
-</style>
+      <!-- Location -->
+      <div class="info-card fade-up delay-2">
+        <div class="info-icon">📍</div>
+        <div class="info-content">
+          <div class="info-label">Location</div>
+          <div class="info-value">San Francisco, CA / Remote</div>
+        </div>
+      </div>
 
-<script>
-document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData);
-    
-    try {
-        const response = await fetch('/api/contact', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
-        const result = await response.json();
-        alert(result.message);
-        if (result.status === 'success') e.target.reset();
-    } catch (error) {
-        alert('Error sending message. Please try again.');
+      <!-- Timezone -->
+      <div class="info-card fade-up delay-3">
+        <div class="info-icon">🕐</div>
+        <div class="info-content">
+          <div class="info-label">Timezone</div>
+          <div class="info-value">IST (UTC+5:30) / PST (UTC-8) — Flexible hours</div>
+        </div>
+      </div>
+
+      <!-- Work Type -->
+      <div class="info-card fade-up delay-3">
+        <div class="info-icon">💼</div>
+        <div class="info-content">
+          <div class="info-label">Work Type</div>
+          <div class="info-value">Remote · Worldwide · On-site</div>
+        </div>
+      </div>
+
+      <!-- Social Links -->
+      <div class="social-links-section fade-up delay-3">
+        <a href="https://github.com/nexvion" target="_blank" class="social-link-btn">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="https://linkedin.com/company/nexvion" target="_blank" class="social-link-btn">
+          <i class="fab fa-linkedin-in"></i> LinkedIn
+        </a>
+        <a href="https://twitter.com/nexvion" target="_blank" class="social-link-btn">
+          <i class="fab fa-twitter"></i> Twitter
+        </a>
+        <a href="https://instagram.com/nexvion" target="_blank" class="social-link-btn">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+      </div>
+
+      <!-- Async Note -->
+      <div class="async-note fade-up delay-3">
+        <p>
+          <strong>💡 Prefer async?</strong> Send an email directly to 
+          <a href="mailto:hello@nexvion.com">hello@nexvion.com</a> and we'll get back to you 
+          with a full project proposal within 24 hours.
+        </p>
+      </div>
+    </div>
+
+    <!-- Right Column - Form -->
+    <div class="form-container fade-up">
+      <div id="formWrapper">
+        <h2 class="form-title">Start a Conversation</h2>
+        <p class="form-subtitle">Fill out the form and we'll be in touch within one business day.</p>
+
+        <div id="errorMsg" class="error-msg" style="display: none;"></div>
+
+        <div class="form-row-2">
+          <div class="input-group">
+            <label>First Name *</label>
+            <input type="text" id="firstName" placeholder="Alex">
+          </div>
+          <div class="input-group">
+            <label>Last Name</label>
+            <input type="text" id="lastName" placeholder="Johnson">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Email Address *</label>
+          <input type="email" id="email" placeholder="alex@company.com">
+        </div>
+
+        <div class="input-group">
+          <label>Project Budget</label>
+          <select id="budget">
+            <option value="">Select a range...</option>
+            <option>Under $2,000</option>
+            <option>$2,000 – $5,000</option>
+            <option>$5,000 – $10,000</option>
+            <option>$10,000 – $25,000</option>
+            <option>$25,000+</option>
+            <option>Let's discuss</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Service Needed</label>
+          <select id="service">
+            <option value="">Select a service...</option>
+            <option>Web Application</option>
+            <option>E-Commerce Store</option>
+            <option>Mobile App</option>
+            <option>UI/UX Design</option>
+            <option>API / Backend</option>
+            <option>Cloud Services</option>
+            <option>Maintenance & Support</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Tell Us About Your Project *</label>
+          <textarea id="message" rows="5" placeholder="Describe your project, goals, timeline..."></textarea>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="agree">
+          <label for="agree">
+            I agree to be contacted about my project. No spam, ever. See <a href="#">privacy policy</a>.
+          </label>
+        </div>
+
+        <button class="submit-btn" id="submitBtn" onclick="sendMessage()">Send Message →</button>
+      </div>
+
+      <div id="successWrapper" style="display: none;">
+        <div class="success-screen">
+          <div class="success-icon">🚀</div>
+          <h3>Message Sent Successfully!</h3>
+          <p>Thanks for reaching out to Nexvion. We'll review your project and get back to you within 24 hours.</p>
+          <button class="reset-btn" onclick="resetForm()">Send Another Message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <script>
+  function showError(message) {
+    const errorDiv = document.getElementById('errorMsg');
+    if(errorDiv) {
+      errorDiv.textContent = message;
+      errorDiv.style.display = 'block';
+      setTimeout(() => {
+        errorDiv.style.display = 'none';
+      }, 5000);
     }
-});
+  }
+
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  async function sendMessage() {
+    const firstName = document.getElementById('firstName')?.value.trim();
+    const lastName = document.getElementById('lastName')?.value.trim();
+    const email = document.getElementById('email')?.value.trim();
+    const message = document.getElementById('message')?.value.trim();
+    const budget = document.getElementById('budget')?.value;
+    const service = document.getElementById('service')?.value;
+    const agree = document.getElementById('agree')?.checked;
+
+    // Validation
+    if (!firstName) {
+      showError('Please enter your first name');
+      return;
+    }
+    if (!email) {
+      showError('Please enter your email address');
+      return;
+    }
+    if (!isValidEmail(email)) {
+      showError('Please enter a valid email address');
+      return;
+    }
+    if (!message) {
+      showError('Please tell us about your project');
+      return;
+    }
+    if (!agree) {
+      showError('Please agree to be contacted');
+      return;
+    }
+
+    const submitBtn = document.getElementById('submitBtn');
+    if(submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+    }
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: firstName + (lastName ? ' ' + lastName : ''),
+          email: email,
+          message: `Service: ${service}\nBudget: ${budget}\n\n${message}`
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.status === 'success') {
+        const formWrapper = document.getElementById('formWrapper');
+        const successWrapper = document.getElementById('successWrapper');
+        if(formWrapper) formWrapper.style.display = 'none';
+        if(successWrapper) successWrapper.style.display = 'block';
+      } else {
+        showError(result.message || 'Something went wrong. Please try again.');
+        if(submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Message →';
+        }
+      }
+    } catch (error) {
+      showError('Network error. Please check your connection.');
+      if(submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message →';
+      }
+    }
+  }
+
+  function resetForm() {
+    const formWrapper = document.getElementById('formWrapper');
+    const successWrapper = document.getElementById('successWrapper');
+    if(formWrapper) formWrapper.style.display = 'block';
+    if(successWrapper) successWrapper.style.display = 'none';
+    
+    const firstName = document.getElementById('firstName');
+    const lastName = document.getElementById('lastName');
+    const email = document.getElementById('email');
+    const budget = document.getElementById('budget');
+    const service = document.getElementById('service');
+    const message = document.getElementById('message');
+    const agree = document.getElementById('agree');
+    
+    if(firstName) firstName.value = '';
+    if(lastName) lastName.value = '';
+    if(email) email.value = '';
+    if(budget) budget.value = '';
+    if(service) service.value = '';
+    if(message) message.value = '';
+    if(agree) agree.checked = false;
+  }
+
+  // Reveal animations on scroll
+  document.addEventListener('DOMContentLoaded', function() {
+    const fadeElements = document.querySelectorAll('.fade-up');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeElements.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'all 0.6s ease';
+      observer.observe(el);
+    });
+  });
 </script>
+
 {% endblock %}

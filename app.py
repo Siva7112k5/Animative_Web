@@ -1,5 +1,8 @@
-from flask import Flask, render_template, request, jsonify, session
+from flask import Flask, render_template, request, jsonify, session, redirect, url_for, flash
 from flask_mail import Mail, Message
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask_bcrypt import Bcrypt
 import os
 from datetime import datetime
 from dotenv import load_dotenv
@@ -9,60 +12,107 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
+# Database Configuration
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///nexvion.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 # Email Configuration
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = os.getenv('EMAIL_USER')
-app.config['MAIL_PASSWORD'] = os.getenv('EMAIL_PASSWORD')
-app.config['MAIL_DEFAULT_SENDER'] = os.getenv('EMAIL_USER')
+app.config['MAIL_USERNAME'] = os.getenv('EMAIL_USER', 'your_email@gmail.com')
+app.config['MAIL_PASSWORD'] = os.getenv('EMAIL_PASSWORD', 'your_password')
+app.config['MAIL_DEFAULT_SENDER'] = os.getenv('EMAIL_USER', 'your_email@gmail.com')
 
-mail = Mail(app)
+# Initialize extensions
+db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
+login_manager = LoginManager(app)
+login_manager.login_view = 'admin_login'
+login_manager.login_message = 'Please login to access admin panel'
 
-# Team Data with Social Media
+# ========== DATABASE MODELS ==========
+
+class ContactMessage(db.Model):
+    """Model for storing contact form messages"""
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), nullable=False)
+    message = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    is_read = db.Column(db.Boolean, default=False)
+    is_replied = db.Column(db.Boolean, default=False)
+    
+    def __repr__(self):
+        return f'<ContactMessage {self.name}>'
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'email': self.email,
+            'message': self.message,
+            'created_at': self.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+            'is_read': self.is_read,
+            'is_replied': self.is_replied
+        }
+
+class Admin(UserMixin, db.Model):
+    """Model for admin users"""
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    password_hash = db.Column(db.String(200), nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    def set_password(self, password):
+        self.password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
+    
+    def check_password(self, password):
+        return bcrypt.check_password_hash(self.password_hash, password)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return Admin.query.get(int(user_id))
+
+# ========== CREATE DATABASE TABLES ==========
+def init_db():
+    with app.app_context():
+        db.create_all()
+        # Create default admin if not exists
+        if not Admin.query.filter_by(username='admin').first():
+            admin = Admin(username='admin', email='admin@nexvion.com')
+            admin.set_password('admin123')  # Change this password!
+            db.session.add(admin)
+            db.session.commit()
+            print("Default admin created: username='admin', password='admin123'")
+
+# ========== TEAM DATA ==========
 TEAM = [
     {
         'name': 'Siva',
         'role': 'Full Stack Architect',
         'bio': '10+ years of experience building scalable web applications. Expert in React, Python, and Cloud Architecture.',
         'icon': '🚀',
-        'skills': ['Python', 'React', 'AWS', 'Docker'],
-        'social': {
-            'github': 'https://github.com/siva',
-            'linkedin': 'https://linkedin.com/in/siva',
-            'twitter': 'https://twitter.com/siva',
-            'instagram': 'https://instagram.com/siva'
-        }
+        'skills': ['Python', 'React', 'AWS', 'Docker']
     },
     {
         'name': 'Philip',
         'role': 'Backend Engineer',
         'bio': 'Database wizard and API specialist. Creates robust, secure, and lightning-fast backend systems.',
         'icon': '⚡',
-        'skills': ['Node.js', 'PostgreSQL', 'Redis', 'MongoDB'],
-        'social': {
-            'github': 'https://github.com/philip',
-            'linkedin': 'https://linkedin.com/in/philip',
-            'twitter': 'https://twitter.com/philip',
-            'instagram': 'https://instagram.com/philip'
-        }
+        'skills': ['Node.js', 'PostgreSQL', 'Redis', 'MongoDB']
     },
     {
         'name': 'David',
         'role': 'UI/UX Designer',
         'bio': 'Creative mind behind beautiful interfaces. Turns complex ideas into intuitive user experiences.',
         'icon': '🎨',
-        'skills': ['Figma', 'Tailwind', 'Framer', 'Adobe XD'],
-        'social': {
-            'github': 'https://github.com/david',
-            'linkedin': 'https://linkedin.com/in/david',
-            'dribbble': 'https://dribbble.com/david',
-            'behance': 'https://behance.net/david'
-        }
+        'skills': ['Figma', 'Tailwind', 'Framer', 'Adobe XD']
     }
 ]
 
-# Services Data
+# ========== SERVICES DATA ==========
 SERVICES = [
     {
         'id': 1,
@@ -108,7 +158,7 @@ SERVICES = [
     }
 ]
 
-# Portfolio Projects
+# ========== PORTFOLIO PROJECTS ==========
 PROJECTS = [
     {
         'id': 1,
@@ -148,7 +198,7 @@ PROJECTS = [
     }
 ]
 
-# Pricing Plans
+# ========== PRICING PLANS ==========
 PRICING = [
     {
         'name': 'Starter',
@@ -196,6 +246,8 @@ PRICING = [
     }
 ]
 
+# ========== ROUTES ==========
+
 @app.route('/')
 def index():
     return render_template('index.html', team=TEAM, services=SERVICES, projects=PROJECTS, pricing=PRICING)
@@ -224,15 +276,30 @@ def contact():
             email = request.form.get('email')
             message = request.form.get('message')
             
-            # Send email notification
-            msg = Message(f'New Contact Form Submission from {name}',
-                        recipients=[os.getenv('EMAIL_USER')])
-            msg.body = f"""
-            Name: {name}
-            Email: {email}
-            Message: {message}
-            """
-            mail.send(msg)
+            # Save to database
+            contact_msg = ContactMessage(
+                name=name,
+                email=email,
+                message=message
+            )
+            db.session.add(contact_msg)
+            db.session.commit()
+            
+            # Send email notification (optional)
+            try:
+                mail = Mail(app)
+                msg = Message(f'New Contact Form Submission from {name}',
+                            recipients=[os.getenv('EMAIL_USER', 'admin@nexvion.com')])
+                msg.body = f"""
+                Name: {name}
+                Email: {email}
+                Message: {message}
+                
+                View in admin panel: http://localhost:5000/admin/messages
+                """
+                mail.send(msg)
+            except:
+                pass  # Email failed but message is saved
             
             return jsonify({'success': True, 'message': 'Message sent successfully!'})
         except Exception as e:
@@ -247,10 +314,106 @@ def api_contact():
     email = data.get('email')
     message = data.get('message')
     
-    # Process contact form
-    # Add your logic here
+    # Save to database
+    contact_msg = ContactMessage(
+        name=name,
+        email=email,
+        message=message
+    )
+    db.session.add(contact_msg)
+    db.session.commit()
     
     return jsonify({'status': 'success', 'message': 'Thank you! We\'ll contact you soon.'})
 
+# ========== ADMIN PANEL ROUTES ==========
+
+@app.route('/admin/login', methods=['GET', 'POST'])
+def admin_login():
+    if current_user.is_authenticated:
+        return redirect(url_for('admin_dashboard'))
+    
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        
+        admin = Admin.query.filter_by(username=username).first()
+        
+        if admin and admin.check_password(password):
+            login_user(admin)
+            return redirect(url_for('admin_dashboard'))
+        else:
+            flash('Invalid username or password', 'error')
+    
+    return render_template('admin/login.html')
+
+@app.route('/admin/logout')
+@login_required
+def admin_logout():
+    logout_user()
+    return redirect(url_for('admin_login'))
+
+@app.route('/admin')
+@login_required
+def admin_dashboard():
+    # Get statistics
+    total_messages = ContactMessage.query.count()
+    unread_messages = ContactMessage.query.filter_by(is_read=False).count()
+    recent_messages = ContactMessage.query.order_by(ContactMessage.created_at.desc()).limit(5).all()
+    
+    return render_template('admin/dashboard.html', 
+                         total_messages=total_messages,
+                         unread_messages=unread_messages,
+                         recent_messages=recent_messages)
+
+@app.route('/admin/messages')
+@login_required
+def admin_messages():
+    messages = ContactMessage.query.order_by(ContactMessage.created_at.desc()).all()
+    return render_template('admin/messages.html', messages=messages)
+
+@app.route('/admin/message/<int:message_id>')
+@login_required
+def admin_view_message(message_id):
+    message = ContactMessage.query.get_or_404(message_id)
+    # Mark as read
+    if not message.is_read:
+        message.is_read = True
+        db.session.commit()
+    return render_template('admin/message_detail.html', message=message)
+
+@app.route('/admin/message/<int:message_id>/delete', methods=['POST'])
+@login_required
+def admin_delete_message(message_id):
+    message = ContactMessage.query.get_or_404(message_id)
+    db.session.delete(message)
+    db.session.commit()
+    flash('Message deleted successfully', 'success')
+    return redirect(url_for('admin_messages'))
+
+@app.route('/admin/message/<int:message_id>/reply', methods=['POST'])
+@login_required
+def admin_reply_message(message_id):
+    message = ContactMessage.query.get_or_404(message_id)
+    reply_text = request.form.get('reply')
+    
+    if reply_text:
+        # Here you would send an email reply
+        # For now, just mark as replied
+        message.is_replied = True
+        db.session.commit()
+        flash('Reply sent successfully', 'success')
+    
+    return redirect(url_for('admin_view_message', message_id=message_id))
+
+@app.route('/admin/messages/mark-all-read', methods=['POST'])
+@login_required
+def admin_mark_all_read():
+    ContactMessage.query.filter_by(is_read=False).update({'is_read': True})
+    db.session.commit()
+    flash('All messages marked as read', 'success')
+    return redirect(url_for('admin_messages'))
+
+# ========== RUN APP ==========
 if __name__ == '__main__':
+    init_db()  # Initialize database and create tables
     app.run(debug=True, port=5000)

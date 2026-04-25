@@ -1,0 +1,52 @@
+{% extends "admin/base_admin.html" %}
+
+{% block admin_title %}All Messages{% endblock %}
+
+{% block admin_page_title %}All Messages{% endblock %}
+
+{% block admin_content %}
+<div class="page-header">
+    <h2>All Contact Messages</h2>
+    <form method="POST" action="{{ url_for('admin_mark_all_read') }}" style="display: inline;">
+        <button type="submit" class="btn-primary">Mark All as Read</button>
+    </form>
+</div>
+
+<table class="admin-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for msg in messages %}
+        <tr>
+            <td>{{ msg.id }}</td>
+            <td>{{ msg.name }}</td>
+            <td>{{ msg.email }}</td>
+            <td>{{ msg.message[:80] }}...</td>
+            <td>{{ msg.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+            <td>
+                {% if not msg.is_read %}
+                    <span class="badge unread">Unread</span>
+                {% else %}
+                    <span class="badge read">Read</span>
+                {% endif %}
+                {% if msg.is_replied %}
+                    <span class="badge replied">Replied</span>
+                {% endif %}
+            </td>
+            <td>
+                <a href="{{ url_for('admin_view_message', message_id=msg.id) }}" class="btn-small">View</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

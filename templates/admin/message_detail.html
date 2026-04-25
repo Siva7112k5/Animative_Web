@@ -1,0 +1,42 @@
+{% extends "admin/base_admin.html" %}
+
+{% block admin_title %}Message Details{% endblock %}
+
+{% block admin_page_title %}Message Details{% endblock %}
+
+{% block admin_content %}
+<div class="message-detail">
+    <div class="message-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <h2>Message from {{ message.name }}</h2>
+        <div class="message-actions" style="display: flex; gap: 1rem;">
+            <form method="POST" action="{{ url_for('admin_delete_message', message_id=message.id) }}" 
+                  onsubmit="return confirm('Are you sure you want to delete this message?')">
+                <button type="submit" style="background: #ef4444; color: white; padding: 0.5rem 1rem; border: none; border-radius: 5px; cursor: pointer;">Delete</button>
+            </form>
+            <a href="{{ url_for('admin_messages') }}" class="btn-secondary">Back to Messages</a>
+        </div>
+    </div>
+    
+    <div style="background: rgba(2, 6, 23, 0.5); padding: 1rem; border-radius: 10px; margin-bottom: 2rem;">
+        <p><strong>From:</strong> {{ message.name }} ({{ message.email }})</p>
+        <p><strong>Received:</strong> {{ message.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+        <p><strong>Status:</strong> 
+            {% if message.is_read %}Read{% else %}Unread{% endif %} | 
+            {% if message.is_replied %}Replied{% else %}Not Replied{% endif %}
+        </p>
+    </div>
+    
+    <div style="background: rgba(2, 6, 23, 0.5); padding: 1rem; border-radius: 10px; margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1rem;">Message:</h3>
+        <p style="line-height: 1.6; white-space: pre-wrap;">{{ message.message }}</p>
+    </div>
+    
+    <div style="background: rgba(2, 6, 23, 0.5); padding: 1rem; border-radius: 10px;">
+        <h3 style="margin-bottom: 1rem;">Reply to {{ message.name }}</h3>
+        <form method="POST" action="{{ url_for('admin_reply_message', message_id=message.id) }}">
+            <textarea name="reply" rows="5" placeholder="Type your reply here..." style="width: 100%; padding: 1rem; background: rgba(2, 6, 23, 0.8); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 10px; color: white; margin: 1rem 0; font-family: inherit;"></textarea>
+            <button type="submit" class="btn-primary">Send Reply</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

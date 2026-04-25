@@ -16,6 +16,16 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+    fetch("{{ url_for('static', filename='css/style.css') }}")
+        .then(response => {
+            if(response.ok) {
+                console.log("✅ CSS loaded successfully");
+            } else {
+                console.log("❌ CSS failed to load");
+            }
+        });
+</script>
 </head>
 <body>
 
